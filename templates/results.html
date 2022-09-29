@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Youtube Video Data</title>
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(even) {
+    background-color: #D6EEEE;
+    }
+    th, td {
+    padding: 5px;
+    }
+    tr:hover {background-color: #EBADD6;}
+    </style>
+
+</head>
+
+<body>
+
+  <div class="table-users">
+   <div class="header">Scraped Data</div>
+
+   <table cellspacing="0" style="width:100%">
+      <tr>
+          <th>Channel Name</th>
+          <th>Video Title</th>
+          <th>Published Date</th>
+          <th>Video Duration (s)</th>
+          <th>View Count</th>
+          <th>Likes Count</th>
+          <th>Comment Count</th>
+          <th>Video Link</th>
+          <th>Video Thumbnail</th>
+      </tr>
+         {% for data in channel_video_data %}
+      <tr>
+          <td>{{data['channelname']}}</td>
+          <td>{{data['video_title']}} </td>
+          <td>{{data['publish_date']}}</td>
+          <td>{{data['duration']}} </td>
+          <td>{{data['view_count']}}</td>
+          <td>{{data['likes_count']}}</td>
+          <td>{{data['comments_count']}} </td>
+          <td><a href="{{data['video_link']}}" target="_blank" rel="noopener noreferrer">Video Link</a></td>
+          <td><a href="{{data['thumbnail_url']}}" target="_blank" rel="noopener noreferrer">Thumbnail Link</a></td>
+
+
+       {% endfor %}
+   </table>
+</div>
+
+
+
+</body>
+
+</html>

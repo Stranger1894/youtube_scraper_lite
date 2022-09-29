@@ -1,0 +1,10 @@
+Flask~=1.1.1
+Flask-Cors==3.0.8
+Werkzeug==0.16.0
+beautifulsoup4~=4.9.1
+bs4~=0.0.1
+requests~=2.27.1
+google-api-python-client~=2.52.0
+markupsafe==2.0.1
+isodate==0.6.1
+

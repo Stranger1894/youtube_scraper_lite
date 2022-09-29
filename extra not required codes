@@ -1,0 +1,45 @@
+def get_comments_details_forsql(youtube, video_ids):
+    all_comments = []
+    for video in video_ids:
+        try:
+            request = youtube.commentThreads().list(part="snippet",
+                                                    order="relevance",
+                                                    maxResults=50,
+                                                    videoId=video)
+
+            response = request.execute()
+            comments_in_video = [comment['snippet']['topLevelComment']['snippet']['textOriginal'] for comment in
+                                 response['items']]
+            commentor_name = [comment['snippet']['topLevelComment']['snippet']['authorDisplayName'] for comment
+                              in response['items']]
+            comments_in_video_info = {'video_id': video, 'comments': comments_in_video,
+                                      'commentor_name': commentor_name}
+
+            all_comments.append(comments_in_video_info)
+
+        except:
+            # When error occurs - most likely because comments are disabled on a video
+            print('Could not get comments for video ' + video)
+            comments_in_video_info = {'video_id': video, 'comments': "No comment on this video",
+                                      'commentor_name': None}
+            all_comments.append(comments_in_video_info)
+
+    return all_comments
+
+all_comments = get_comments_details_forsql(youtube, video_ids)
+
+
+# combining all data into a single list of dictionaries
+        combined_list = []
+        for i, d1 in enumerate(channel_video_data):
+            for j, d2 in enumerate(all_comments):
+                    if i == j:
+                        d3 = {**d1, **d2}
+                        combined_list.append(d3)
+
+
+<td><a href="{{data['video_link']}}" style="display:block;">&nbsp;</a></td>
+
+
+
+
